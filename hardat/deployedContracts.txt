@@ -1,0 +1,9 @@
+Whitelist contract address : 0x781A02eb69a377b0147c0f3e0D4947d846f939c4
+
+NFT contract address of deployed contract = 0x36506001e950dc60f0dceA3bF991ccF82eDaf711
+
+0xGamma Token Contract Address : 0xAE762d1E0aFB9760832641368dC862e379435e95
+
+FakeNFTMarketplace deployed to: 0xD6a449679971204E18E4826ed5A644A8d6D861e3
+
+0xGammaDAO Address : 0xF3B120815E2363669D4CBa10d352eD098694eB03

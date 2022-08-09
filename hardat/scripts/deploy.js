@@ -1,6 +1,6 @@
 const { ethers } = require("hardhat")
 require("dotenv").config();
-import METADATA_URL from "./constants/index.js";
+const {METADATA_URL}= require("../constants/index");
 
 async function main() {
     // Deploy the whitelist contract
@@ -13,19 +13,19 @@ async function main() {
 
     // Deploy the NFT contract
     const metadataURL = METADATA_URL;
-    const _0xGammaNFT = await ethers.getContractFactory("0xGammaNFT")
+    const _0xGammaNFT = await ethers.getContractFactory("OxGammaNFT")
 
     const deployed0xGammaNFTContract = await _0xGammaNFT.deploy(metadataURL, whitelistContractAddress);
     await deployed0xGammaNFTContract.deployed();
     const _0xGammaNFTContractAddress = deployed0xGammaNFTContract.address;
-    console.log(`\n NFT contract address of deployed contract = ${_0xGammaNFTContractAddress}\n`);
+    console.log(`\nNFT contract address of deployed contract = ${_0xGammaNFTContractAddress}\n`);
 
 
     // Deploy the ICO token contract
     const _0xGammaTokenContract = await ethers.getContractFactory("OxGammaToken");
     const deployed0xGammaTokenContract  = await _0xGammaTokenContract.deploy(_0xGammaNFTContractAddress);
     const _0xGammaTokenContractAddress = deployed0xGammaTokenContract.address;
-    console.log(`\o0xGamma Contract Address : ${_0xGammaTokenContractAddress}\n`)
+    console.log(`\n0xGamma Token Contract Address : ${_0xGammaTokenContractAddress}\n`)
 
 
 
@@ -46,7 +46,7 @@ async function main() {
   await deployedOxGammaDAOContract.deployed();
 
   const OxGammaDAOContractAddress = deployedOxGammaDAOContract.address;
-  console.log(`\o0xGammaDAO Address : ${OxGammaDAOContractAddress}\n`)
+  console.log(`\n0xGammaDAO Address : ${OxGammaDAOContractAddress}\n`)
 
 }
 
