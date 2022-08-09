@@ -9,7 +9,7 @@ export default function handler(req, res) {
 
   const name = `0xGammaNFT ${tokenId}`;
   const description = `A new and beautiful NFT collection`;
-  const image =`/${Number(tokenId)-1}.svg`;
+  const image =`https://raw.githubusercontent.com/noviator/dao-app-full/main/dao-app-full/public/0xGammaNFT/${Number(tokenId)-1}.svg`;
 
   res.status(200).json({
     name: name,
