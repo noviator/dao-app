@@ -166,7 +166,7 @@ export default function Home() {
         // loop through balance of nfts a user owns
         for(var i=0; i<balance; i++){
           // get the token id of each nft owned by current address
-          const tokenId = await nftContract.tokenOfOwnerByIndex(address,i);
+          const tokenId = await _0xGammaNFTContract.tokenOfOwnerByIndex(address,i);
           // check if the nft with tokenId has already claimed token or not
           const claimed = await _0xGammaTokenContract.tokenIdsClaimed(tokenId);
 
@@ -194,7 +194,7 @@ export default function Home() {
       setLoading(false);
       window.alert('Successfully claimed 0xGamma Tokens');
 
-      await getBalanceOf0xGammaToken ();
+      await getBalanceOf0xGammaToken();
       await getTotalTokenMinted();
       await getTokensToBeClaimed();
     } catch (error) {
@@ -227,7 +227,10 @@ export default function Home() {
     return (
       <div style = {{display:"flex-col"}}>
         <div>
-          <input type="number" placeholder='Amount of tokens' onChange={(e)=> {setTokenAmount(BigNumber.from(e.target.value))}}/>
+          <input type="number" placeholder='Amount of tokens' onChange={(e)=> {
+            setTokenAmount(e.target.value?BigNumber.from(e.target.value):"")
+          }}/>
+          <div className={styles.spacetop}/>
           <button className={styles.button} disabled = {!tokenAmount } onClick={()=>mint0xGammaToken (tokenAmount)}>
             Mint Tokens
           </button>

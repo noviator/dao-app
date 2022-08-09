@@ -368,6 +368,7 @@ export default function Home() {
             <button className={styles.button} onClick={() => setSelectedTab("Create Proposal")} >
               Create Proposal
             </button>
+            <div className={styles.spacetop}/>
             <button className={styles.button} onClick={() => setSelectedTab("View Proposals")} >
               View Proposals
             </button>

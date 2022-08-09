@@ -297,7 +297,7 @@ export default function Home() {
     }
 
     if(!presaleStarted){
-      // say "presale hasn't started and come back later"
+      // if presale is not started and user is not the owner
       return (
         <div>
           <span className={styles.description}>
@@ -312,7 +312,7 @@ export default function Home() {
       // allow users in whitelist to mint in presale
       if(whitelisted){
         return (
-          <div>
+          <div className={styles.nftmint}>
             <span className={styles.description}>
               Presale has started, If your address is whitelisted, you can mint a 0xGammaNFT.
             </span>
@@ -336,7 +336,7 @@ export default function Home() {
     if(presaleEnded){
       // allow users to mint(public sale)
         return (
-        <div>
+        <div className={styles.nftmint}>
           <span className={styles.description}>
             Presale has ended, you can mint a 0xGammaNFT in public sale if any remains.
           </span>
@@ -353,7 +353,7 @@ export default function Home() {
       <Head> 
         <title>0xGammaNFT</title>
       </Head>
-      <div className={styles.main}>
+      <div className={styles.main2}>
         <span className={styles.description}>
           {numTokensMinted}/20  :  0xGammaNFT has been minted
         </span>

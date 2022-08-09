@@ -19,6 +19,10 @@ export default function Home() {
     // the component.
     const web3ModalRef = useRef();
 
+    const getWhitelistContractInstance = (providerOrSigner) => {
+        return new Contract(WHITELIST_CONTRACT_ADDRESS, WHITELIST_CONTRACT_ABI, providerOrSigner);
+    }
+
     const getProviderOrSigner = async(needSigner = false)=>{
         try{ // providers- just read transactions
             const provider = await web3ModalRef.current.connect();
@@ -47,11 +51,7 @@ export default function Home() {
     const checkIfAddressIsWhitelisted= async()=>{
         try{
             const signer = await getProviderOrSigner(true);
-            const whitelistContract = new Contract(
-                WHITELIST_CONTRACT_ADDRESS,
-                WHITELIST_CONTRACT_ABI,
-                signer
-            );
+            const whitelistContract = getWhitelistContractInstance(signer);
             const address = await signer.getAddress();
             const _joinedWhitelist = await whitelistContract.whitelistedAddresses(address);
             setJoinedWhitelist(_joinedWhitelist);
@@ -64,11 +64,7 @@ export default function Home() {
     const getNumberOfWhitelisted = async()=>{
         try{
             const provider = await getProviderOrSigner();
-             const whitelistContract = new Contract(
-                WHITELIST_CONTRACT_ADDRESS,
-                WHITELIST_CONTRACT_ABI,
-                provider
-            );
+             const whitelistContract = getWhitelistContractInstance(provider);
             const _numberOfWhiteListed = await whitelistContract.numAddressesWhitelisted();
             setNumberOfWhitelisted(_numberOfWhiteListed)
         }catch(err){
@@ -79,11 +75,7 @@ export default function Home() {
     const addAddrToWhitelist = async()=>{
         try{
             const signer = await getProviderOrSigner(true);
-             const whitelistContract = new Contract(
-                WHITELIST_CONTRACT_ADDRESS,
-                abi,
-                signer
-            );
+            const whitelistContract = getWhitelistContractInstance(signer);
 
             const tx = await whitelistContract.addAddressToWhitelist();
             setLoading(true);
@@ -156,14 +148,14 @@ export default function Home() {
     },[walletConnected])
 
     return ( <div>
-        <div className={styles.main}>
+        <div className={styles.main2}>
             <h1 className={styles.title}>Welcome to 0xGamma NFT whitelist</h1>
             <div className={styles.description}>
                 {numberOfWhitelisted} have joined the whitelist
             </div>
             <div> 
                 {/* <Image src="crypto-devs.svg" alt =""/> */}
-                <img className = {styles.image} src="/pic.svg" alt="" />
+                <img className = {styles.image} src="/0.svg" alt="" />
             </div>
             <div>
                 {renderButton()}
